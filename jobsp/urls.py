@@ -311,6 +311,7 @@ urlpatterns = [
     # url(r'^dj-rest-auth/', include('dj_rest_auth.urls')),
     url(r"^api-recruiter/", include("recruiter.api_urls", namespace="api_recruiter")),
     url(r"^celery-check/", include("mp_celery_monitor.urls", namespace="celery-check")),
+    path("networking/", include("networking.urls", namespace="networking")),
 ]
 
 handler404 = custom_404

@@ -1,0 +1,317 @@
+{% extends "base_with_tailwind_megamenu.html" %}
+{% load static %}
+{% block title %}Social Feed | İŞKUR Next{% endblock %}
+
+{% block base %}
+<div class="bg-gray-50 min-h-screen pt-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            <!-- Left Sidebar: Profile Card -->
+            <div class="hidden lg:block">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-24">
+                    <div class="h-24 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+                    <div class="px-4 pb-4">
+                        <div class="relative flex justify-center -mt-12 mb-3">
+                            {% if request.user.profile_pic %}
+                            <img src="{{ request.user.profile_pic.url }}" alt="Profile"
+                                class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover">
+                            {% else %}
+                            <div
+                                class="w-24 h-24 rounded-full border-4 border-white shadow-md bg-gray-200 flex items-center justify-center text-gray-500">
+                                <i data-lucide="user" class="w-10 h-10"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="text-center">
+                            <h3 class="font-bold text-gray-900 text-lg">{{
+                                request.user.get_full_name|default:request.user.username }}</h3>
+                            <p class="text-gray-500 text-sm mb-4">{{ request.user.job_role|default:"Open to work" }}</p>
+
+                            <div class="border-t border-gray-100 py-3 text-left">
+                                <div class="flex justify-between items-center text-sm py-1">
+                                    <span class="text-gray-600">Profile Views</span>
+                                    <span class="text-blue-600 font-semibold">1,204</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm py-1">
+                                    <span class="text-gray-600">Connections</span>
+                                    <span class="text-blue-600 font-semibold">500+</span>
+                                </div>
+                            </div>
+                            <a href="{% url 'my:profile' %}"
+                                class="block w-full py-2 text-center text-blue-600 font-medium text-sm border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Column: Feed -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Create Post -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                    <div class="flex gap-3 mb-3">
+                        {% if request.user.profile_pic %}
+                        <img src="{{ request.user.profile_pic.url }}" class="w-12 h-12 rounded-full object-cover">
+                        {% else %}
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                            <i data-lucide="user" class="w-6 h-6"></i>
+                        </div>
+                        {% endif %}
+                        <button onclick="document.getElementById('post-modal').classList.remove('hidden')"
+                            class="flex-1 text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full transition-colors rounded-xl font-medium border border-transparent">
+                            Start a post, {{ request.user.first_name }}...
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-center px-4 pt-2">
+                        <button
+                            class="flex items-center gap-2 text-gray-500 hover:text-blue-600 text-sm font-medium transition-colors">
+                            <i data-lucide="image" class="w-5 h-5 text-blue-500"></i>
+                            Media
+                        </button>
+                        <button
+                            class="flex items-center gap-2 text-gray-500 hover:text-orange-600 text-sm font-medium transition-colors">
+                            <i data-lucide="calendar" class="w-5 h-5 text-orange-500"></i>
+                            Event
+                        </button>
+                        <button
+                            class="flex items-center gap-2 text-gray-500 hover:text-green-600 text-sm font-medium transition-colors">
+                            <i data-lucide="file-text" class="w-5 h-5 text-green-500"></i>
+                            Write article
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed Divider -->
+                <div class="flex items-center justify-between text-sm text-gray-500 px-1">
+                    <div class="h-px bg-gray-200 flex-1 mr-4"></div>
+                    <span>Sort by: <span class="font-semibold text-gray-900 cursor-pointer">Top</span></span>
+                </div>
+
+                <!-- Posts Stream -->
+                {% for post in posts %}
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <!-- Post Header -->
+                    <div class="p-4 flex gap-3">
+                        {% if post.user.profile_pic %}
+                        <img src="{{ post.user.profile_pic.url }}" class="w-12 h-12 rounded-full object-cover">
+                        {% else %}
+                        <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                            <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <div class="font-bold text-gray-900">
+                                {{ post.user.get_full_name|default:post.user.username }}
+                                {% if post.user.is_recruiter %}
+                                <span
+                                    class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full ml-1 font-normal">Recruiter</span>
+                                {% endif %}
+                            </div>
+                            <div class="text-xs text-gray-500">{{ post.user.job_role|default:"Member" }}</div>
+                            <div class="text-xs text-gray-400 flex items-center gap-1">
+                                {{ post.created_at|timesince }} ago • <i data-lucide="globe" class="w-3 h-3"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="px-4 pb-2">
+                        <p class="text-gray-800 whitespace-pre-line">{{ post.content }}</p>
+                    </div>
+
+                    {% if post.image %}
+                    <div class="mt-2">
+                        <img src="{{ post.image.url }}" class="w-full object-cover max-h-[500px]">
+                    </div>
+                    {% endif %}
+
+                    <!-- Stats -->
+                    <div
+                        class="px-4 py-2 flex items-center justify-between text-xs text-gray-500 border-b border-gray-100">
+                        <div class="flex items-center gap-1">
+                            <div
+                                class="bg-blue-500 text-white p-1 rounded-full w-4 h-4 flex items-center justify-center">
+                                <i data-lucide="thumbs-up" class="w-2 h-2 fill-current"></i>
+                            </div>
+                            <span>{{ post.likes.count }} likes</span>
+                        </div>
+                        <div>{{ post.comments.count }} comments</div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="px-2 py-1 flex items-center justify-between">
+                        <a href="{% url 'networking:like_post' post.id %}"
+                            class="flex-1 py-3 hover:bg-gray-50 rounded-lg flex items-center justify-center gap-2 text-gray-600 font-medium text-sm transition-colors {% if request.user in post.likes.all %}text-blue-600{% endif %}">
+                            <i data-lucide="thumbs-up"
+                                class="w-5 h-5 {% if request.user in post.likes.all %}fill-current{% endif %}"></i>
+                            Like
+                        </a>
+                        <button
+                            class="flex-1 py-3 hover:bg-gray-50 rounded-lg flex items-center justify-center gap-2 text-gray-600 font-medium text-sm transition-colors">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            Comment
+                        </button>
+                        <button
+                            class="flex-1 py-3 hover:bg-gray-50 rounded-lg flex items-center justify-center gap-2 text-gray-600 font-medium text-sm transition-colors">
+                            <i data-lucide="share-2" class="w-5 h-5"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="rss" class="w-8 h-8 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Your feed is empty</h3>
+                    <p class="text-gray-500 max-w-sm mx-auto mb-6">Connect with others to see their posts and updates
+                        here.</p>
+                    <a href="{% url 'networking:network' %}"
+                        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors">
+                        Find Connections
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Right Sidebar: Widgets -->
+            <div class="hidden lg:block space-y-6">
+                <!-- News Widget -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-gray-900">İŞKUR News</h3>
+                        <i data-lucide="info" class="w-4 h-4 text-gray-400"></i>
+                    </div>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#" class="block group">
+                                <div class="flex items-start gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 line-clamp-2">
+                                            Tech hiring surges in Istanbul</div>
+                                        <div class="text-xs text-gray-500 mt-1">2h ago • 14,023 readers</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block group">
+                                <div class="flex items-start gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 line-clamp-2">
+                                            New incentives for startups</div>
+                                        <div class="text-xs text-gray-500 mt-1">5h ago • 8,912 readers</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block group">
+                                <div class="flex items-start gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0"></div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 line-clamp-2">
+                                            Remote work trends 2025</div>
+                                        <div class="text-xs text-gray-500 mt-1">1d ago • 22,109 readers</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full mt-4 flex items-center justify-center gap-1 text-sm font-medium text-gray-500 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+                        Show more <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- footer links -->
+                <div class="text-center text-xs text-gray-500">
+                    <div class="flex flex-wrap justify-center gap-2 mb-2">
+                        <a href="#" class="hover:underline">About</a>
+                        <a href="#" class="hover:underline">Accessibility</a>
+                        <a href="#" class="hover:underline">Help Center</a>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                        <a href="#" class="hover:underline">Privacy & Terms</a>
+                        <a href="#" class="hover:underline">Ad Choices</a>
+                    </div>
+                    <p>İŞKUR Next Corporation © 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Post Modal -->
+<div id="post-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-filter backdrop-blur-sm"></div>
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
+                <form action="{% url 'networking:feed' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
+                            <h3 class="text-xl font-semibold leading-6 text-gray-900" id="modal-title">Create a post
+                            </h3>
+                            <button type="button"
+                                onclick="document.getElementById('post-modal').classList.add('hidden')"
+                                class="text-gray-400 hover:text-gray-500 rounded-full p-1 hover:bg-gray-100 transition-colors">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex gap-3 mb-4">
+                            {% if request.user.profile_pic %}
+                            <img src="{{ request.user.profile_pic.url }}" class="w-12 h-12 rounded-full object-cover">
+                            {% else %}
+                            <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                                <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <div class="font-bold text-gray-900">{{
+                                    request.user.get_full_name|default:request.user.username }}</div>
+                                <div
+                                    class="text-xs text-gray-500 flex items-center gap-1 border border-gray-300 rounded-full px-2 py-0.5 mt-0.5 w-fit">
+                                    <i data-lucide="globe" class="w-3 h-3"></i> Anyone
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <textarea name="content" rows="4"
+                                class="w-full border-0 focus:ring-0 text-lg placeholder-gray-500 resize-none"
+                                placeholder="What do you want to talk about?"></textarea>
+                        </div>
+
+                        <div
+                            class="mt-4 border border-gray-200 rounded-lg p-3 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer">
+                            <label for="image-upload"
+                                class="flex items-center gap-3 cursor-pointer w-full text-gray-600 font-medium">
+                                <input type="file" name="image" id="image-upload" class="hidden">
+                                <i data-lucide="image" class="w-6 h-6 text-blue-500"></i>
+                                Add Media
+                            </label>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button type="submit"
+                            class="inline-flex w-full justify-center rounded-full bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto transition-colors">Post</button>
+                        <button type="button" onclick="document.getElementById('post-modal').classList.add('hidden')"
+                            class="mt-3 inline-flex w-full justify-center rounded-full bg-white px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

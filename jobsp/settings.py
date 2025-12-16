@@ -17,7 +17,7 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "iletisim@iskurnext.gov.tr"
 PEEL_URL = os.getenv("PEEL_URL", "http://iskurnext.gov.tr/")
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/1")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "")
 CELERY_IMPORTS = ("dashboard.tasks")
 
 
@@ -25,47 +25,47 @@ CELERY_IMPORTS = ("dashboard.tasks")
 
 logging = "DEBUG"
 
-GIT_APP_ID = os.getenv("GITAPPID")
-GIT_APP_SECRET = os.getenv("GITAPPSECRET")
+GIT_APP_ID = os.getenv("GITAPPID", "")
+GIT_APP_SECRET = os.getenv("GITAPPSECRET", "")
 
 ALLOWED_HOSTS = ["iskurnext.gov.tr", "test.iskurnext.gov.tr", "localhost", "127.0.0.1"]
 
 # tw app
-tw_oauth_token_secret = os.getenv("twoauthtokensecret")
-tw_oauth_token = os.getenv("twoauthtokensecret")
+tw_oauth_token_secret = os.getenv("twoauthtokensecret", "")
+tw_oauth_token = os.getenv("twoauthtokensecret", "")
 
-TW_APP_KEY = os.getenv("TWAPPKEY")
-TW_APP_SECRET = os.getenv("TWAPPSECRET")
-OAUTH_TOKEN = os.getenv("OAUTHTOKEN")
-OAUTH_SECRET = os.getenv("OAUTHSECRET")
+TW_APP_KEY = os.getenv("TWAPPKEY", "")
+TW_APP_SECRET = os.getenv("TWAPPSECRET", "")
+OAUTH_TOKEN = os.getenv("OAUTHTOKEN", "")
+OAUTH_SECRET = os.getenv("OAUTHSECRET", "")
 
-PJ_TW_APP_KEY = os.getenv("PJTWAPPKEY")
-PJ_TW_APP_SECRET = os.getenv("PJTWAPPSECRET")
+PJ_TW_APP_KEY = os.getenv("PJTWAPPKEY", "")
+PJ_TW_APP_SECRET = os.getenv("PJTWAPPSECRET", "")
 
 # fb app
-FB_APP_ID = os.getenv("FACEBOOK_APP_ID")
-FB_SECRET = os.getenv("FACEBOOK_APP_SECRET")
-FB_PEELJOBS_PAGEID = os.getenv("FBPEELJOBSPAGEID")
+FB_APP_ID = os.getenv("FACEBOOK_APP_ID", "")
+FB_SECRET = os.getenv("FACEBOOK_APP_SECRET", "")
+FB_PEELJOBS_PAGEID = os.getenv("FBPEELJOBSPAGEID", "")
 
 # google app
-GOOGLE_CLIENT_ID = GOOGLE_OAUTH2_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = GOOGLE_OAUTH2_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-GOOGLE_LOGIN_HOST = os.getenv("GOOGLE_LOGIN_HOST")
+GOOGLE_CLIENT_ID = GOOGLE_OAUTH2_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
+GOOGLE_CLIENT_SECRET = GOOGLE_OAUTH2_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
+GOOGLE_LOGIN_HOST = os.getenv("GOOGLE_LOGIN_HOST", "")
 
 # ln app
-LN_API_KEY = os.getenv("LNAPIKEY")
-LN_SECRET_KEY = os.getenv("LNSECRETKEY")
-LN_OAUTH_USER_TOKEN = os.getenv("LNOAUTHUSERTOKEN")
-LN_OAUTH_USER_SECRET = os.getenv("LNOAUTHUSERSECRET")
-LN_COMPANYID = os.getenv("LNCOMPANYID")
+LN_API_KEY = os.getenv("LNAPIKEY", "")
+LN_SECRET_KEY = os.getenv("LNSECRETKEY", "")
+LN_OAUTH_USER_TOKEN = os.getenv("LNOAUTHUSERTOKEN", "")
+LN_OAUTH_USER_SECRET = os.getenv("LNOAUTHUSERSECRET", "")
+LN_COMPANYID = os.getenv("LNCOMPANYID", "")
 
 # re-captcha
-RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
-RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
+RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY", "")
+RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
 RECAPTCHA_USE_SSL = True
 
 # Make this unique, and don"t share it with anybody.
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "insecure-dev-key-12345")
 
 ADMINS = (
     # ("Your Name", "your_email@example.com"),
@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     "rest_framework.authtoken",
     "dj_rest_auth",
     "django_ses",
+    "networking",
 )
 
 MIDDLEWARE = [
@@ -186,11 +187,11 @@ TEMPLATES = [
     },
 ]
 
-AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY")
-AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_KEY")
-AWS_SES_REGION_NAME = os.getenv("AWS_SES_REGION_NAME")
-AWS_SES_REGION_ENDPOINT = os.getenv("AWS_SES_REGION_ENDPOINT")
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY", "")
+AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_KEY", "")
+AWS_SES_REGION_NAME = os.getenv("AWS_SES_REGION_NAME", "")
+AWS_SES_REGION_ENDPOINT = os.getenv("AWS_SES_REGION_ENDPOINT", "")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "")
 
 
 COMPRESS_CSS_FILTERS = [
@@ -376,12 +377,12 @@ THUMBNAIL_FORCE_OVERWRITE = True
 #     }
 # }
 
-FB_ACCESS_TOKEN = os.getenv("FBACCESSTOKEN")
-FB_PAGE_ACCESS_TOKEN = os.getenv("FBPAGEACCESSTOKEN")
-FB_GROUP_ACCESS_TOKEN = os.getenv("FBGROUPACCESSTOKEN")
-FB_ALL_GROUPS_TOKEN = os.getenv("FBALLGROUPSTOKEN")
-FB_DEL_ACCESS_TOKEN = os.getenv("FBDELACCESSTOKEN")
-REC_FB_ACCESS_TOKEN = os.getenv("RECFBACCESSTOKEN")
+FB_ACCESS_TOKEN = os.getenv("FBACCESSTOKEN", "")
+FB_PAGE_ACCESS_TOKEN = os.getenv("FBPAGEACCESSTOKEN", "")
+FB_GROUP_ACCESS_TOKEN = os.getenv("FBGROUPACCESSTOKEN", "")
+FB_ALL_GROUPS_TOKEN = os.getenv("FBALLGROUPSTOKEN", "")
+FB_DEL_ACCESS_TOKEN = os.getenv("FBDELACCESSTOKEN", "")
+REC_FB_ACCESS_TOKEN = os.getenv("RECFBACCESSTOKEN", "")
 
 URLS = [
     "http://stage.peeljobs.com/",
@@ -410,8 +411,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 EMAIL_BACKEND = "django_ses.SESBackend"
 
-MP_CELERY_MONITOR_KEY = os.getenv("MP_CELERY_MONITOR_KEY")
-CELERY_MONITOR_URL = os.getenv("CELERY_MONITOR_URL")
+MP_CELERY_MONITOR_KEY = os.getenv("MP_CELERY_MONITOR_KEY", "")
+CELERY_MONITOR_URL = os.getenv("CELERY_MONITOR_URL", "")
 
 # Tailwind CSS Configuration
 TAILWIND_CSS_FILE = "css/tailwind-output.css"
