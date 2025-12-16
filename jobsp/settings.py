@@ -111,8 +111,16 @@ ROOT_URLCONF = "jobsp.urls"
 
 # Python dotted path to the WSGI application used by Django"s runserver.
 WSGI_APPLICATION = "jobsp.wsgi.application"
+ASGI_APPLICATION = "jobsp.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 INSTALLED_APPS = (
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -137,6 +145,8 @@ INSTALLED_APPS = (
     "dj_rest_auth",
     "django_ses",
     "networking",
+    "channels",
+    "chat",
 )
 
 MIDDLEWARE = [

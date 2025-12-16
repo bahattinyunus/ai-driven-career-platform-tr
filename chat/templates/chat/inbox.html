@@ -1,0 +1,51 @@
+{% extends "base_with_tailwind_megamenu.html" %}
+{% block title %}Messages | İŞKUR Next{% endblock %}
+
+{% block base %}
+<div class="bg-gray-50 min-h-screen pt-4">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">Messages</h1>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            {% if conversations %}
+            <ul>
+                {% for convo in conversations %}
+                <li class="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
+                    <a href="{% url 'chat:room' convo.other_user.username %}" class="block p-4">
+                        <div class="flex items-center gap-4">
+                            <div class="relative">
+                                {% if convo.other_user.profile_pic %}
+                                <img src="{{ convo.other_user.profile_pic.url }}"
+                                    class="w-12 h-12 rounded-full object-cover">
+                                {% else %}
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                                    <i data-lucide="user" class="w-6 h-6"></i>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="font-semibold text-gray-900">{{
+                                        convo.other_user.get_full_name|default:convo.other_user.username }}</h3>
+                                    <span class="text-xs text-gray-500">{{ convo.updated_at|timesince }} ago</span>
+                                </div>
+                                <p class="text-sm text-gray-600 line-clamp-1">
+                                    {{ convo.messages.last.content|default:"Start a conversation" }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="p-12 text-center text-gray-500">
+                <i data-lucide="message-square" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                <p>No messages yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,6 +3,8 @@ behave-django==1.5.0
 black==25.1.0
 boto3==1.38.32
 bpython==0.25
+channels==4.0.0
+daphne==4.0.0
 celery==5.5.3
 coverage==7.8.2
 django==5.2.2

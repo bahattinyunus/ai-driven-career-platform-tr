@@ -185,6 +185,16 @@
                 </div>
 
                 <!-- Regular Menu Items -->
+                <!-- Social Features -->
+                <a href="{% url 'networking:feed' %}"
+                  class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if '/networking/feed' in request.path %}text-blue-600 bg-blue-50{% endif %}">
+                  Feed
+                </a>
+                <a href="{% url 'networking:network' %}"
+                  class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if '/networking/network' in request.path %}text-blue-600 bg-blue-50{% endif %}">
+                  Network
+                </a>
+
                 <a href="{% url 'fresher_jobs_by_skills' 'fresher' %}"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if request.path == '/fresher-jobs-by-skills/' %}text-blue-600 bg-blue-50{% endif %}">
                   Yeni Mezun
@@ -295,6 +305,10 @@
                   <a href="{% url 'jobs:index' %}"
                     class="block text-gray-700 hover:text-blue-600 text-sm font-medium px-3 py-2 rounded-md hover:bg-white transition-all duration-200">Latest
                     Jobs</a>
+                  <a href="{% url 'networking:feed' %}"
+                    class="block text-gray-700 hover:text-blue-600 text-sm font-medium px-3 py-2 rounded-md hover:bg-white transition-all duration-200">Feed</a>
+                  <a href="{% url 'networking:network' %}"
+                    class="block text-gray-700 hover:text-blue-600 text-sm font-medium px-3 py-2 rounded-md hover:bg-white transition-all duration-200">Network</a>
                   <a href="{% url 'fresher_jobs_by_skills' 'fresher' %}"
                     class="block text-gray-700 hover:text-blue-600 text-sm font-medium px-3 py-2 rounded-md hover:bg-white transition-all duration-200">Fresher
                     Jobs</a>

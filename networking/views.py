@@ -52,3 +52,49 @@ def network(request):
         'suggestions': suggestions
     }
     return render(request, 'networking/network.html', context)
+
+@login_required
+def user_profile(request, username):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    target_user = get_object_or_404(User, username=username)
+    
+    # Check connection status
+    is_connected = False
+    connection_status = None
+    
+    if request.user != target_user:
+        connection = Connection.objects.filter(
+            (Q(user=request.user) & Q(connection=target_user)) |
+            (Q(user=target_user) & Q(connection=request.user))
+        ).first()
+        
+        if connection:
+            if connection.status == 'accepted':
+                is_connected = True
+            connection_status = connection.status
+            
+    # Get user's posts
+    posts = Post.objects.filter(user=target_user).order_by('-created_at')
+    
+    context = {
+        'target_user': target_user,
+        'is_connected': is_connected,
+        'connection_status': connection_status,
+        'posts': posts
+    }
+    return render(request, 'networking/profile.html', context)
+
+@login_required
+def send_connection_request(request, username):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    target_user = get_object_or_404(User, username=username)
+    
+    if request.user != target_user:
+        Connection.objects.get_or_create(
+            user=request.user,
+            connection=target_user,
+            defaults={'status': 'pending'}
+        )
+    return redirect('networking:user_profile', username=username)

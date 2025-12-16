@@ -1,0 +1,125 @@
+{% extends "base_with_tailwind_megamenu.html" %}
+{% load static %}
+{% block title %}Chat with {{ other_user.get_full_name }} | İŞKUR Next{% endblock %}
+
+{% block base %}
+<div class="bg-gray-50 h-[calc(100vh-64px)] flex flex-col">
+    <div class="flex-1 w-full max-w-4xl mx-auto p-4 flex flex-col h-full">
+
+        <!-- Header -->
+        <div class="bg-white p-4 rounded-t-xl shadow-sm border border-gray-100 flex items-center gap-3 shrink-0">
+            <a href="{% url 'chat:inbox' %}" class="text-gray-500 hover:text-gray-700">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            </a>
+            <div class="relative">
+                {% if other_user.profile_pic %}
+                <img src="{{ other_user.profile_pic.url }}" class="w-10 h-10 rounded-full object-cover">
+                {% else %}
+                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                </div>
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="font-bold text-gray-900">{{ other_user.get_full_name|default:other_user.username }}</h2>
+                <p class="text-xs text-green-600 flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span> Online
+                </p>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div id="chat-log" class="flex-1 bg-white border-l border-r border-gray-100 p-4 overflow-y-auto space-y-4">
+            {% for message in chat_history %}
+            {% if message.sender == request.user %}
+            <div class="flex justify-end">
+                <div class="bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-tr-none max-w-[80%] break-words">
+                    {{ message.content }}
+                </div>
+            </div>
+            {% else %}
+            <div class="flex justify-start">
+                <div class="bg-gray-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-none max-w-[80%] break-words">
+                    {{ message.content }}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Input Area -->
+        <div class="bg-white p-4 rounded-b-xl shadow-sm border border-gray-100 shrink-0">
+            <div class="flex gap-2">
+                <input id="chat-message-input" type="text"
+                    class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                    placeholder="Type a message...">
+                <button id="chat-message-submit"
+                    class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors">
+                    <i data-lucide="send" class="w-5 h-5 ml-0.5"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{ room_name|json_script:"room-name" }}
+{{ request.user.username|json_script:"user-username" }}
+
+<script>
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const userUsername = JSON.parse(document.getElementById('user-username').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
+    );
+
+    chatSocket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        const message = data.message;
+        const sender = data.sender;
+
+        const chatLog = document.querySelector('#chat-log');
+        const messageElement = document.createElement('div');
+
+        if (sender === userUsername) {
+            messageElement.className = 'flex justify-end';
+            messageElement.innerHTML = `<div class="bg-blue-600 text-white px-4 py-2 rounded-2xl rounded-tr-none max-w-[80%] break-words">${message}</div>`;
+        } else {
+            messageElement.className = 'flex justify-start';
+            messageElement.innerHTML = `<div class="bg-gray-100 text-gray-800 px-4 py-2 rounded-2xl rounded-tl-none max-w-[80%] break-words">${message}</div>`;
+        }
+
+        chatLog.appendChild(messageElement);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    };
+
+    chatSocket.onclose = function (e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function (e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        if (message.trim()) {
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'sender': userUsername
+            }));
+            messageInputDom.value = '';
+        }
+    };
+
+    // Auto scroll to bottom on load
+    const chatLog = document.querySelector('#chat-log');
+    chatLog.scrollTop = chatLog.scrollHeight;
+</script>
+{% endblock %}

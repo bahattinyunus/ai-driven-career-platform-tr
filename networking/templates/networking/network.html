@@ -97,7 +97,7 @@
                                 </div>
                                 {% endif %}
 
-                                <a href="#"
+                                <a href="{% url 'networking:user_profile' suggestion.username %}"
                                     class="block mt-2 font-bold text-gray-900 text-lg hover:underline truncate">{{
                                     suggestion.get_full_name|default:suggestion.username }}</a>
                                 <p class="text-sm text-gray-500 h-10 overflow-hidden">{{

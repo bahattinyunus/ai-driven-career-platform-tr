@@ -7,4 +7,6 @@ urlpatterns = [
     path('feed/', views.feed, name='feed'),
     path('network/', views.network, name='network'),
     path('post/<int:post_id>/like/', views.like_post, name='like_post'),
+    path('profile/<str:username>/', views.user_profile, name='user_profile'),
+    path('connect/<str:username>/', views.send_connection_request, name='connect'),
 ]
