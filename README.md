@@ -1,6 +1,6 @@
 # 🇹🇷 İŞKUR Next - Yeni Nesil İstihdam Platformu
 
-![İŞKUR Next Banner](https://img.shields.io/badge/Status-Geliştirme%20Aşamasında-blue?style=for-the-badge&logo=gov.tr) ![Python](https://img.shields.io/badge/Backend-Django-green?style=for-the-badge&logo=django) ![Frontend](https://img.shields.io/badge/Frontend-Tailwind%20CSS-blue?style=for-the-badge&logo=tailwindcss)
+![İŞKUR Next Banner](static/img/banner.png)
 
 > **Vizyon**: Türkiye'nin devlet destekli istihdam kurumu İŞKUR'u, **LinkedIn'e rakip olacak** seviyede modern, sosyal ve yapay zeka destekli bir kariyere platformuna dönüştürmek.
 
