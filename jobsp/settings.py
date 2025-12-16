@@ -11,10 +11,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DEBUG = os.getenv("DEBUG", True)
 TEMPLATE_DEBUG = DEBUG
 
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "peeljobs@micropyramid.com")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "iletisim@iskurnext.gov.tr")
 
 
-PEEL_URL = os.getenv("PEEL_URL", "http://peeljobs.com/")
+PEEL_URL = os.getenv("PEEL_URL", "http://iskurnext.gov.tr/")
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/1")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
@@ -28,7 +28,7 @@ logging = "DEBUG"
 GIT_APP_ID = os.getenv("GITAPPID")
 GIT_APP_SECRET = os.getenv("GITAPPSECRET")
 
-ALLOWED_HOSTS = ["peeljobs.com", "test.peeljobs.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["iskurnext.gov.tr", "test.iskurnext.gov.tr", "localhost", "127.0.0.1"]
 
 # tw app
 tw_oauth_token_secret = os.getenv("twoauthtokensecret")
@@ -85,9 +85,9 @@ DATABASES = {
 }
 
 
-TIME_ZONE = "Asia/Kolkata"
+TIME_ZONE = "Europe/Istanbul"
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "tr-tr"
 
 SITE_ID = 1
 

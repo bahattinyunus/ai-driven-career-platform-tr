@@ -14,8 +14,10 @@
               <!-- Brand -->
               <div class="flex items-center">
                 <a href="/" class="flex items-center hover:opacity-80 transition-opacity duration-200">
-                  <img src="{{logo}}" alt="PeelJobs Logo" class="h-8 w-auto mr-3 object-contain">
-                  <span class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200">Peeljobs</span>
+                  <img src="{{logo}}" alt="İŞKUR Next Logo" class="h-8 w-auto mr-3 object-contain">
+                  <span
+                    class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200">İŞKUR
+                    Next</span>
                 </a>
               </div>
 
@@ -31,8 +33,9 @@
                 <div class="relative group">
                   <a href="{% url 'jobs:index' %}"
                     class="flex items-center text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 group">
-                    Latest Jobs
-                    <i data-lucide="chevron-down" class="ml-1 h-3 w-3 transform group-hover:rotate-180 transition-transform duration-200"></i>
+                    Son İlanlar
+                    <i data-lucide="chevron-down"
+                      class="ml-1 h-3 w-3 transform group-hover:rotate-180 transition-transform duration-200"></i>
                   </a>
 
                   <!-- Improved Megamenu Dropdown -->
@@ -52,7 +55,7 @@
                                   d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
                                 </path>
                               </svg>
-                              Skills
+                              Yetenekler
                             </a>
                           </h3>
                           <ul class="space-y-2">
@@ -79,7 +82,7 @@
                                   d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
                                 </path>
                               </svg>
-                              Industry
+                              Sektör
                             </a>
                           </h3>
                           <ul class="space-y-2">
@@ -108,7 +111,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                               </svg>
-                              Location
+                              Konum
                             </a>
                           </h3>
                           <ul class="space-y-2">
@@ -135,7 +138,7 @@
                                   d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
                                 </path>
                               </svg>
-                              Internship
+                              Staj
                             </a>
                           </h3>
                           <ul class="space-y-2">
@@ -184,7 +187,7 @@
                 <!-- Regular Menu Items -->
                 <a href="{% url 'fresher_jobs_by_skills' 'fresher' %}"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if request.path == '/fresher-jobs-by-skills/' %}text-blue-600 bg-blue-50{% endif %}">
-                  Fresher Jobs
+                  Yeni Mezun
                 </a>
                 <a href="{% url 'fresher_jobs_by_skills' 'walkin' %}"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if request.path == '/walkin-jobs-by-skills/' %}text-blue-600 bg-blue-50{% endif %}">
@@ -204,7 +207,7 @@
                 </a>
                 <a href="{% url 'companies' %}"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if request.path == '/companies/' %}text-blue-600 bg-blue-50{% endif %}">
-                  Companies
+                  Şirketler
                 </a>
                 <a href="{% url 'recruiters' %}"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-2 py-2 rounded-md hover:bg-gray-50 transition-all duration-200 {% if request.path == '/recruiters/' %}text-blue-600 bg-blue-50{% endif %}">
@@ -233,7 +236,8 @@
                     class="w-8 h-8 rounded-full object-cover border-2 border-gray-200 hover:border-blue-400 transition-colors duration-200"
                     src="{{request.user.photo}}" alt="Profile">
                   {% else %}
-                  <div class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-2 border-gray-200 hover:border-blue-400 transition-colors duration-200 flex items-center justify-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-2 border-gray-200 hover:border-blue-400 transition-colors duration-200 flex items-center justify-center">
                     <i data-lucide="user" class="w-5 h-5 text-gray-600"></i>
                   </div>
                   {% endif %}
@@ -265,9 +269,10 @@
                 <a href="/login"
                   class="text-gray-700 hover:text-blue-600 text-sm font-medium px-4 py-2 rounded-md hover:bg-gray-50 transition-all duration-200">Login</a>
                 <a href="/register"
-                  class="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm">Register</a>
+                  class="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm">Kayıt
+                  Ol</a>
                 <a href="{% url 'post_job' %}"
-                  class="bg-green-600 text-white text-sm px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-200 font-medium shadow-sm">Employer</a>
+                  class="bg-green-600 text-white text-sm px-4 py-2 rounded-md hover:bg-green-700 transition-all duration-200 font-medium shadow-sm">İşveren</a>
                 {% endif %}
               </div>
 
@@ -500,9 +505,10 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- About Section -->
         <div>
-          <h3 class="text-2xl font-bold text-blue-400 mb-4">Peeljobs</h3>
+          <h3 class="text-2xl font-bold text-blue-400 mb-4">İŞKUR Next</h3>
           <p class="text-gray-300 leading-relaxed text-sm mb-6">
-            Peeljobs connects recruiters and job seekers across India with unique features and ease of use. We offer many free services to both job-seekers and recruiters.
+            İŞKUR Next, Türkiye genelinde iş arayanları ve işverenleri benzersiz özellikler ve kullanım kolaylığı ile
+            buluşturur. Hem iş arayanlara hem de işverenlere birçok ücretsiz hizmet sunuyoruz.
           </p>
 
           <!-- Social Links -->
@@ -512,19 +518,22 @@
               <a target="_blank" href="https://facebook.com/peeljobs/"
                 class="w-9 h-9 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-all duration-300">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </a>
               <a target="_blank" href="https://www.linkedin.com/company/peeljobs?trk=top_nav_home"
                 class="w-9 h-9 bg-blue-700 hover:bg-blue-800 rounded-lg flex items-center justify-center transition-all duration-300">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
               </a>
               <a target="_blank" href="https://twitter.com/PeelJobs"
                 class="w-9 h-9 bg-blue-400 hover:bg-blue-500 rounded-lg flex items-center justify-center transition-all duration-300">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                 </svg>
               </a>
             </div>
@@ -540,7 +549,8 @@
             <li><a href="{% url 'sitemap' %}" target="_blank"
                 class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">Sitemap</a></li>
             <li><a href="{% url 'pages' 'terms-conditions' %}" target="_blank"
-                class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">Terms & Conditions</a></li>
+                class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">Terms & Conditions</a>
+            </li>
             <li><a href="{% url 'pages' 'privacy-policy' %}" target="_blank"
                 class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm">Privacy Policy</a></li>
             <li><a href="{% url 'contact' %}" target="_blank"
@@ -557,7 +567,8 @@
             <li><a href="{% url 'pages' 'recruiter-faq' %}" target="_blank"
                 class="text-gray-300 hover:text-green-400 transition-colors duration-300 text-sm">FAQs</a></li>
             <li><a href="{% url 'post_job' %}" target="_blank"
-                class="text-gray-300 hover:text-green-400 transition-colors duration-300 text-sm">Post Job For Free</a></li>
+                class="text-gray-300 hover:text-green-400 transition-colors duration-300 text-sm">Post Job For Free</a>
+            </li>
           </ul>
         </div>
 
@@ -567,12 +578,14 @@
           <ul class="space-y-2">
             {% if not request.user.is_authenticated %}
             <li><a href="/login"
-                class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">Login / Connect</a></li>
+                class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">Login / Connect</a>
+            </li>
             {% endif %}
             <li><a href="/" target="_blank"
                 class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">Search Jobs</a></li>
             <li><a href="{% url 'jobs:index' %}" target="_blank"
-                class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">View All Jobs</a></li>
+                class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">View All Jobs</a>
+            </li>
             <li><a href="{% url 'pages' 'faq' %}" target="_blank"
                 class="text-gray-300 hover:text-purple-400 transition-colors duration-300 text-sm">FAQs</a></li>
           </ul>
@@ -583,11 +596,11 @@
       <div class="border-t border-gray-700 mt-8 pt-6">
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p class="mb-2 md:mb-0">
-            Copyright &copy; {% now "Y" %} Peeljobs.com - All Rights Reserved
+            Telif Hakkı &copy; {% now "Y" %} İŞKUR Next - Tüm Hakları Saklıdır
           </p>
-          <a href="https://micropyramid.com" title="MicroPyramid Informatics Private Ltd" target="_blank"
+          <a href="#" title="İŞKUR Next" target="_blank"
             class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
-            Development + SEO by MicroPyramid
+            Devlet Destekli İstihdam Platformu
           </a>
         </div>
       </div>
@@ -638,11 +651,11 @@
   });
 
   // Initialize Lucide icons after content loads
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+      lucide.createIcons();
     }
-});
+  });
 </script>
 {% endblock %}
 
