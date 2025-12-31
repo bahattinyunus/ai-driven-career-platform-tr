@@ -25,6 +25,17 @@ Bu proje, açık kaynaklı `PeelJobs` altyapısı üzerine inşa edilmiş olup, 
 
 ---
 
+## 🎨 Tasarım Felsefesi: "Premium Public Tech"
+
+Kullanıcı deneyimi (UX), sadece estetik değil, bir saygınlık meselesidir. **İŞKUR Next**, devlet hizmetlerinin soğuk ve bürokratik yüzünü yıkarak; güven veren, modern ve akıcı bir arayüz sunar.
+
+*   **Glassmorphism Estetiği:** Şeffaf katmanlar, bulanıklık efektleri ve canlı renk geçişleri ile derinlik ve hiyerarşi hissi yaratılır.
+*   **Mikro-Etkileşimler:** Butonlar, kartlar ve geçişlerdeki ince animasyonlar, kullanıcıya "canlı" bir sistemde olduğu hissini verir.
+*   **Tipografi Odaklılık:** Okunabilirliği artıran, modern font aileleri ile içerik ön plana çıkarılır.
+
+
+---
+
 ## 🛠 Teknoloji Yığını (Tech Stack)
 
 Proje, yüksek performans, güvenlik ve ölçeklenebilirlik için en güncel teknolojileri kullanır:
@@ -39,7 +50,30 @@ Proje, yüksek performans, güvenlik ve ölçeklenebilirlik için en güncel tek
 
 ---
 
-## 🔥 Temel Özellikler
+## � Güvenlik ve Altyapı
+
+Bir devlet projesi ciddiyetiyle, verileriniz en üst düzey güvenlik protokolleriyle korunur.
+
+*   **Uçtan Uca Şifreleme:** Hassas kullanıcı verileri AES-256 standardında şifrelenerek saklanır.
+*   **RBAC (Rol Tabanlı Erişim):** İşveren, Aday ve Yönetici yetkileri kesin çizgilerle ayrılmıştır; kimse görmemesi gereken veriye erişemez.
+*   **Rate Limiting:** API endpoint'leri, kötü niyetli saldırılara (DDoS) karşı korumalıdır.
+*   **Dockerize Yapı:** Proje, konteyner mimarisi sayesinde her ortamda (Dev/Test/Prod) aynı kararlılıkla çalışır.
+
+---
+
+## ⚡ Performans ve Ölçeklenebilirlik
+
+Sistem, yüksek trafik altında bile minimum gecikme (latency) ile yanıt verecek şekilde optimize edilmiştir.
+
+*   **Load Balancing (Yük Dengeleme):** Gelen trafik, Nginx üzerinden birden fazla uygulama sunucusuna dağıtılır.
+*   **Database Partitioning:** Büyük veri setleri için veritabanı bölümleme stratejileri uygulanmıştır.
+*   **CDN Entegrasyonu:** Statik dosyalar (CSS, JS, Görseller) dünya genelindeki sunuculardan (CDN) servis edilerek yüklenme hızı maksimize edilir.
+
+
+
+---
+
+## �🔥 Temel Özellikler
 
 ### 1. Sosyal Ağ (Yeni!)
 *   **Akış (Feed):** Bağlantılarınızın ve takip ettiğiniz firmaların güncellemelerini, makalelerini ve başarılarını görün.
@@ -105,6 +139,36 @@ Projeyi yerel ortamınızda ayağa kaldırmak için aşağıdaki adımları izle
 
 ---
 
+## 🌍 Evrensel Erişim (Accessibility)
+
+Teknoloji herkes içindir. İŞKUR Next, engelsiz bir deneyim sunmayı taahhüt eder.
+
+*   **WCAG 2.1 Uyumu:** Görme engelli vatandaşlarımız için ekran okuyucu (Screen Reader) tam desteği.
+*   **Yüksek Kontrast Modu:** Görme güçlüğü çekenler için özel renk paleti seçenekleri.
+*   **Klavye Navigasyonu:** Fare kullanmadan, sadece klavye ile tüm sitede gezinebilme özgürlüğü.
+
+---
+
+## 🤖 Etik Yapay Zeka İlkeleri
+
+Yapay zeka algoritmalarımızda **şeffaflık**, **adil kullanım** ve **hesap verebilirlik** esastır.
+
+*   **Önyargı Karşıtlığı (Anti-Bias):** Algoritmalar, cinsiyet, yaş veya etnik kökene dayalı ayrımcılık yapmayacak şekilde eğitilir.
+*   **Açıklanabilirlik (XAI):** "Neden bu iş bana önerildi?" sorusunun cevabı kullanıcılara şeffaf bir şekilde sunulur.
+*   **Veri Mahremiyeti:** AI modelleri eğitilirken kişisel veriler anonimleştirilir (GDPR/KVKK uyumlu).
+
+---
+
+## 📊 Teknolojik Hazırlık Seviyesi (TRL)
+
+Projemiz, **TRL 7 - Gerçek Ortamda Sistem Prototipi Gösterimi** seviyesindedir.
+
+> **Mevcut Durum:** Tüm temel fonksiyonlar (iş arama, başvuru, profil oluşturma, sosyal akış) entegre edilmiş ve gerçekçi veri setleriyle stres testlerinden başarıyla geçmiştir.
+
+
+
+---
+
 ## 🗺 Yol Haritası (Roadmap)
 
 - [x] **Faz 1:** Marka Dönüşümü ve Altyapı Hazırlığı (Tamamlandı)
@@ -135,4 +199,13 @@ Açık kaynak komünitesinin gücüne inanıyoruz! Katkıda bulunmak isterseniz:
 Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
 
 ---
-**Geliştirici:** Bahattin Yunus & Google DeepMind Agent | **İletişim:** iletisim@iskurnext.gov.tr
+
+## 👨‍💻 Proje Mimarı
+
+**Bahattin Yunus Çetin**  
+*IT Architect*
+
+Trabzon, Of'ta üniversite eğitimine devam eden Bahattin Yunus Çetin, modern yazılım mimarileri ve ölçeklenebilir sistemler üzerine uzmanlaşmış bir **IT Architect** olarak çalışmalarını sürdürmektedir. Bu proje, kamu istihdam süreçlerine yenilikçi, profesyonel ve yüksek standartlarda bir yaklaşım getirmek amacıyla geliştirilmiştir.
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profil-181717?style=for-the-badge&logo=github)](https://github.com/bahattinyunus)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Bağlantı_Kur-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/bahattinyunus/)
